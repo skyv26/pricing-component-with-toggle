@@ -1,0 +1,15 @@
+@import '_variables'
+
+@mixin global_resetter()
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: $global-font
+
+@mixin dflex()
+    display: flex
+    width: 100%
+    flex-direction: column
+
+@mixin dgrid($row: auto, $col: auto)
+    display: grid

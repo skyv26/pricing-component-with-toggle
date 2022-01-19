@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/skyv26/pricing-component-with-toggle)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/skyv26/pricing-component-with-toggle)
+- Live Site URL: [Git Pages](https://skyv26.github.io/pricing-component-with-toggle/)
 
 ## My process
 

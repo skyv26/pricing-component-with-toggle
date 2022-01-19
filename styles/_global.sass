@@ -1,0 +1,53 @@
+@import './_variables'
+@import './_mixins'
+
+*
+    @include global_resetter
+
+    &::after
+        @extend *
+
+    &::before
+        @extend *
+
+html
+    font-size: 93.75%
+    height: 100%
+    background-color: $very-light-grayish-blue
+
+body
+    width: 100%
+    max-width: 1440px
+    background-image: url('../images/bg-top.svg')
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: top -1.95rem left 11.1rem
+    min-height: 100%
+    margin: auto
+    @media screen and (min-width: 23em)
+        background-position: top -2rem left 14.6rem
+        background-size: auto 38%
+
+    @media screen and (min-width: 37em)
+        background-image: url('../images/bg-top.svg'), url('../images/bg-bottom.svg')
+        background-repeat: no-repeat no-repeat
+        background-size: 30% 40%, 40% 30%
+        background-position: top right, bottom left
+
+    @media screen and (min-width: 64em)
+        background-image: url('../images/bg-top.svg'), url('../images/bg-bottom.svg')
+        background-repeat: no-repeat, no-repeat
+        background-size: auto 79%, auto 37%
+        background-position: top right 0, bottom -4% left
+    
+    @media screen and (min-width: 80em)
+        background-image: url('../images/bg-top.svg'), url('../images/bg-bottom.svg')
+        background-repeat: no-repeat, no-repeat
+        background-size: auto 77.5%, auto 36%
+        background-position: top right -0.25rem, bottom -0.45% left -0.1%
+
+h1,h2,h3,h4,h5
+    font-size: 0
+
+ul
+    list-style: none

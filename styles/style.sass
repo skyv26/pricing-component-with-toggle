@@ -1,0 +1,565 @@
+@use './_global'
+@use "sass:math"
+@import './_mixins'
+
+.headings
+    color: $grayish-blue
+
+.container
+    @include dflex
+
+.container--main
+    @extend .container
+    width: 88%
+    margin: auto
+    margin-top: 3vh
+    gap: $fontsize * 4.6
+
+    &__toggle
+        @extend .container
+        align-items: center
+        padding-top: 12%
+        gap: $fontsize * 2.35
+
+        .heading
+            @extend .headings
+            font-size: $fontsize * 1.825
+
+        .price--toggle
+            @extend .container
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            gap: $fontsize * 1.4
+
+            &__text
+                font-size: $fontsize * 0.85
+                color: $light-grayish-blue
+
+            .switch
+                position: relative
+                display: block
+                width: $fontsize * 3.25
+                height: $fontsize * 1.8
+
+                .toggle
+                    display: none
+
+                .toggle:checked + .slider::before
+                    transform: translate(88%, -50%)
+                    transition: .5s
+
+                .slider
+                    position: absolute
+                    cursor: pointer
+                    top: 0
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    background: $gradient
+                    border-radius: 2rem
+
+                    &.round::before
+                        position: absolute
+                        content: ""
+                        width: $fontsize * 1.35
+                        height: $fontsize * 1.35
+                        border-radius: 50%
+                        background-color: $very-light-grayish-blue
+                        top: 50%
+                        left: 14%
+                        transform: translate(-14%, -50%)
+                        transition: .5s
+
+.container--main
+
+    &__article
+        &--container
+            @include dgrid
+            grid-template-areas: "article1" "article2" "article3"
+            grid-row-gap: $fontsize * 1.91
+
+            .article
+                @include dflex
+                background-color: $very-light-grayish-blue
+                border-radius: 0.4rem
+                box-shadow: 0 10px 10px 10px rgba($grayish-blue, 0.1)
+                align-items: center
+                padding-top: 1.84rem
+                gap: $fontsize * 1.1
+
+                .heading
+                    @extend .headings
+                    font-size: $fontsize
+
+                .price
+                    @include dflex
+                    flex-direction: row
+                    align-items: center
+                    justify-content: center
+                    font-size: $fontsize * 2.4
+                    color: $dark-grayish-blue
+
+                    span
+                        font-size: $fontsize * 4.1
+                        letter-spacing: -2px
+
+                .features
+                    margin-top: $fontsize * 0.25
+                    width: 81%
+                    text-align: center
+                    &--list
+                        @extend .headings
+                        font-size: $fontsize * 0.875
+                        border-top: 1px solid rgba($light-grayish-blue, 0.4)
+                        border-bottom: 1px solid rgba($light-grayish-blue, 0.4)
+                        padding: $fontsize * 0.85
+                        padding-bottom: $fontsize
+
+                        &:nth-child(even)
+                            border: none
+
+                .button
+                    width: 81%
+                    margin-top: $fontsize * 0.75
+                    border-radius: $fontsize * 0.35
+                    text-align: center
+                    font-size: $fontsize * 0.7
+                    text-transform: uppercase
+                    letter-spacing: 1.5px
+                    padding: $fontsize * 0.815 0
+                    margin-bottom: 1.75rem
+                    text-decoration: none
+                    background: $gradient
+                    color: $very-light-grayish-blue
+
+                &-1
+                    grid-area: article1
+                &-2
+                    grid-area: article2
+                    background: $gradient2
+
+                    .heading
+                        color: $very-light-grayish-blue
+
+                    .price
+                        @extend  .heading
+
+                    .features
+                        &--list
+                            @extend  .heading
+
+                    .button
+                        background: $very-light-grayish-blue
+                        color: hsl(237, 63%, 64%)
+
+                &-3
+                    grid-area: article3
+
+    @media screen and (min-width: 37em)
+        width: 93%
+        &__article
+            &--container
+                grid-template-areas: "article1 article3" ".article2"
+                grid-column-gap: $fontsize * 1
+                grid-row-gap: $fontsize * 1
+                margin-bottom: $fontsize * 3
+                .article
+                    width: 18rem
+                    margin: auto
+                    &-2
+                        transform: translateX(-50%)
+
+    @media screen and (min-width: 48em)
+        width: 88%
+        &__article
+            &--container
+                grid-template-areas: "article1 article3" ".article2"
+                grid-column-gap: $fontsize * 2
+                grid-row-gap: $fontsize * 2
+                margin-bottom: $fontsize * 3
+                .article
+                    width: 22rem
+                    margin: auto
+                    &-2
+                        transform: translateX(-12.5rem)
+
+    @media screen and (min-width: 64em)
+        width: 72.6%
+        gap: $fontsize * 3.3
+
+        &__toggle
+            padding-top: 4%
+            gap: $fontsize * 1.95
+
+            .heading
+                font-size: $fontsize * 1.525
+
+            .price--toggle
+                gap: $fontsize * 0.95
+                &__text
+                    font-size: $fontsize * 0.7
+                .switch
+                    width: $fontsize * 2.75
+                    height: $fontsize * 1.5
+
+                    .slider
+                        &.round::before
+                            width: $fontsize * 1.1
+                            height: $fontsize * 1.1
+                            left: 16%
+                            transform: translate(-16%, -50%)
+        &__article
+
+            &--container
+                grid-template-areas: "article1 article2 article3"
+                grid-column-gap: 0
+                grid-row-gap: 0
+                margin-bottom: 0
+                .article
+                    width: 16.5rem
+                    margin: auto
+                    gap: $fontsize * 0.85
+
+                    .heading
+                        font-size: $fontsize * 0.85
+
+                    .price
+                        font-size: $fontsize * 2
+
+                        span
+                            font-size: $fontsize * 3.4
+                            letter-spacing: -1px
+
+                    .features
+                        margin-top: $fontsize * 0.5
+                        width: 81%
+                        text-align: center
+                        &--list
+                            font-size: $fontsize * 0.7
+                            padding: $fontsize * 0.7
+                            padding-bottom: $fontsize * 0.9
+
+                            &:nth-child(even)
+                                border: none
+
+                    .button
+                        width: 82%
+                        margin-top: $fontsize * 0.5
+                        border-radius: $fontsize * 0.35
+                        font-size: $fontsize * 0.6
+                        letter-spacing: 1.5px
+                        padding: $fontsize * 0.72 0
+                        margin-bottom: 1.75rem
+                        text-decoration: none
+
+                    &-2
+                        transform: scaleY(1.02)
+                        padding-top: $fontsize * 2.6
+                        gap: $fontsize * 0.7
+
+                        .button
+                            padding: 0.75rem 0
+                            margin-bottom: 2.4rem
+
+    @media screen and (min-width: 80em)
+        width: 73%
+        gap: $fontsize * 4.6
+
+        &__toggle
+            padding-top: 4.5%
+            gap: $fontsize * 2.4
+
+            .heading
+                font-size: $fontsize * 1.9
+
+            .price--toggle
+                gap: $fontsize * 1.35
+                &__text
+                    font-size: $fontsize * 0.9
+                .switch
+                    width: $fontsize * 3.4
+                    height: $fontsize * 1.9
+
+                    .slider
+                        &.round::before
+                            width: $fontsize * 1.35
+                            height: $fontsize * 1.35
+
+        &__article
+
+            &--container
+                .article
+                    width: 20.75rem
+                    height: auto
+                    gap: $fontsize * 1
+
+                    .heading
+                        font-size: $fontsize * 1.05
+
+                    .price
+                        font-size: $fontsize * 2.4
+                        font-weight: 800
+                        letter-spacing: 0
+                        gap: $fontsize * 0.4
+
+                        span
+                            font-size: $fontsize * 4.3
+                            letter-spacing: -3px
+
+                    .features
+                        margin-top: $fontsize * 0.5
+                        width: 81%
+                        text-align: center
+                        &--list
+                            font-size: $fontsize * 0.92
+                            padding: $fontsize * 1
+                            padding-bottom: $fontsize * 1
+
+                            &:nth-child(even)
+                                border: none
+
+                    .button
+                        width: 83%
+                        margin-top: $fontsize * 0.9
+                        border-radius: $fontsize * 0.35
+                        font-size: $fontsize * 0.725
+                        letter-spacing: 1.5px
+                        padding: $fontsize * 0.75 0
+                        margin-bottom: 1.75rem
+
+                    &-2
+                        transform: scaleY(1.05)
+                        padding-top: $fontsize * 3.1
+                        gap: $fontsize * 0.8
+
+                        .features
+                            &--list
+                                font-size: $fontsize * 0.92
+                                padding: $fontsize * 0.9
+                                padding-bottom: $fontsize * 0.95
+
+                            &:nth-child(even)
+                                border: none
+                        .button
+                            margin-top: $fontsize * 1.1
+                            padding: 0.75rem 0
+                            margin-bottom: 3.1rem
+    
+    @media screen and (min-width: 85em)
+        width: 73%
+        gap: $fontsize * 5.6
+
+        &__toggle
+            padding-top: 4.5%
+            gap: $fontsize * 2.6
+
+            .heading
+                font-size: $fontsize * 2
+
+            .price--toggle
+                gap: $fontsize * 1.6
+                &__text
+                    font-size: $fontsize * 0.9
+                .switch
+                    width: $fontsize * 3.6
+                    height: $fontsize * 2.1
+
+                    .slider
+                        &.round::before
+                            width: $fontsize * 1.45
+                            height: $fontsize * 1.45
+
+        &__article
+
+            &--container
+                .article
+                    width: 22rem
+                    padding-top: $fontsize * 2
+                    gap: $fontsize * 0.6
+                    height: 100%
+
+                    .heading
+                        font-size: $fontsize * 1.2
+
+                    .price
+                        font-size: $fontsize * 2.4
+                        font-weight: 800
+                        letter-spacing: 0
+                        margin-top: $fontsize * 0.4
+                        gap: $fontsize * 0.4
+
+                        span
+                            font-size: $fontsize * 4.6
+                            letter-spacing: -2px
+
+                    .features
+                        margin-top: $fontsize * 0.75
+                        width: 83%
+                        text-align: center
+                        &--list
+                            font-size: $fontsize * 0.96
+                            padding: $fontsize * 1.1
+                            padding-bottom: $fontsize * 1
+
+                            &:nth-child(even)
+                                border: none
+
+                    .button
+                        width: 83%
+                        margin-top: $fontsize * 1.6
+                        border-radius: $fontsize * 0.35
+                        font-size: $fontsize * 0.8
+                        letter-spacing: 1.5px
+                        padding: $fontsize * 0.9 0
+                        margin-bottom: 2rem
+
+                    &-2
+                        transform: scaleY(1)
+                        height: 110%
+                        margin-top: -7.5%
+                        padding-top: $fontsize * 3.75
+    
+    @media screen and (min-width: 90em)
+        width: 72.75%
+        gap: $fontsize * 6
+
+        &__toggle
+            padding-top: 4.5%
+            gap: $fontsize * 2.6
+
+            .heading
+                font-size: $fontsize * 2.2
+
+            .price--toggle
+                gap: $fontsize * 1.6
+                &__text
+                    font-size: $fontsize * 1
+                .switch
+                    width: $fontsize * 3.75
+                    height: $fontsize * 2.25
+
+                    .slider
+                        &.round::before
+                            width: $fontsize * 1.5
+                            height: $fontsize * 1.5
+
+        &__article
+            &--container
+                .article
+                    width: 23.3rem
+                    padding-top: $fontsize * 2
+                    gap: $fontsize
+                    height: 100%
+
+                    .heading
+                        font-size: $fontsize * 1.2
+
+                    .price
+                        font-size: $fontsize * 2.9
+                        font-weight: 800
+                        letter-spacing: 0
+                        margin-top: $fontsize * 0.4
+                        gap: $fontsize * 0.4
+
+                        span
+                            font-size: $fontsize * 4.75
+                            letter-spacing: -2px
+
+                    .features
+                        margin-top: $fontsize * 0.6
+                        width: 83%
+                        text-align: center
+                        &--list
+                            font-size: $fontsize
+                            padding: $fontsize
+                            padding-bottom: $fontsize * 1.25
+
+                            &:nth-child(even)
+                                border: none
+
+                    .button
+                        width: 83%
+                        margin-top: $fontsize * 1.25
+                        border-radius: $fontsize * 0.35
+                        font-size: $fontsize * 0.8
+                        letter-spacing: 2px
+                        padding: $fontsize 0
+                        margin-bottom: 2rem
+
+                    &-2
+                        transform: scaleY(1)
+                        height: 111%
+                        margin-top: -7.5%
+                        padding-top: $fontsize * 3.75
+                    
+.attribution
+    width: 80%
+    margin: auto
+    margin-top: -7px
+    text-align: center
+    align-self: center
+    justify-content: center
+
+    p
+        color: $grayish-blue
+        font-size: $fontsize * 0.8
+        line-height: 1.5
+        margin-bottom: 7px
+        span
+            display: block
+            font-size: $fontsize * 0.6
+
+        a
+            color: $dark-grayish-blue
+            text-decoration: none
+
+    @media screen and (min-width: 48em)
+        p
+            font-size: $fontsize * 0.8
+            span
+                font-size: inherit
+
+    @media screen and (min-width: 64em)
+        margin-top: 2rem
+        margin-bottom: 1.4rem
+
+        p
+            font-size: $fontsize * 0.6
+            margin-bottom: 0
+            span
+                display: inline-block
+                font-size: $fontsize * 0.6
+
+    @media screen and (min-width: 80em)
+        margin-top: 4.25rem
+        margin-bottom: 1.4rem
+
+        p
+            font-size: $fontsize * 0.8
+            margin-bottom: 0
+            span
+                display: inline-block
+                font-size: $fontsize * 0.8
+    
+    @media screen and (min-width: 85em)
+        margin-top: 4.25rem
+        margin-bottom: 2.2rem
+
+        p
+            font-size: $fontsize * 0.9
+            margin-bottom: 0
+            span
+                display: inline-block
+                font-size: $fontsize * 0.8
+
+    @media screen and (min-width: 90em)
+        margin-top: 5rem
+        margin-bottom: 2.2rem
+
+        p
+            font-size: $fontsize * 0.9
+            margin-bottom: 0
+            span
+                display: inline-block
+                font-size: $fontsize * 0.8
